@@ -43,9 +43,9 @@ Bundle 'jpo/vim-railscasts-theme'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-shell'
 " make -f make_gcc.mak
-Bundle 'Shougo/vimproc'
+" Bundle 'Shougo/vimproc'
 " first should install vimproc
-Bundle 'Shougo/vimshell'
+" Bundle 'Shougo/vimshell'
 " Bundle 'vimim/vimim'
 
 " vim-scripts repos
@@ -63,7 +63,7 @@ Bundle 'ZoomWin'
 Bundle 'derekwyatt/vim-scala'
 
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
 
 " VUNDLE END
 " ==========
@@ -95,7 +95,7 @@ set wildmenu " show list instead of just completing
 set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
 
 " set encoding=utf-8
-set encoding=gbk
+set encoding=prc
 " set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 "add you file type if need
 " set termencoding=gbk
 
@@ -110,7 +110,7 @@ runtime! macros/matchit.vim
 ""augroup END
 ""noremap <silent> <F11> :cal VimCommanderToggle()<CR>
 
-let g:speckyBannerKey = "<leader>rb"
+let g:speckyBannerKey = "<leade/>rb"
 let g:speckyQuoteSwitcherKey = "<leader>r'"
 let g:speckyRunRdocKey = "<leader>rd"
 let g:speckySpecSwitcherKey = "<leader>rx"
@@ -246,8 +246,11 @@ noremap <silent> <leader>fc :FufMruCmd!<CR>
 noremap <silent> H <C-W><C-H>
 noremap <silent> L <C-W><C-L>
 " dir tree and tag list
-noremap <silent> <leader>tt :NERDTreeToggle<CR>
+noremap <F3> :NERDTreeToggle<CR>
+noremap <C-r> :NERDTreeFind<CR>
 noremap <silent> <F2> :Tlist<CR>
+let NERDTreeMapOpenInTab='<ENTER>'
+autocmd VimEnter * wincmd p
 " Commmand-T: findFile
 noremap <silent> <F8> :CommandT<CR>
 noremap <silent> <leader>ts :call ToggleSketch()<CR>
@@ -390,12 +393,12 @@ endif
 "  set csverb                "显示添加成功与否
 "endif
 "
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-e> :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-f> :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-i> :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-d> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
