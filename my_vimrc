@@ -19,9 +19,10 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails.git'
 Bundle 'ervandew/supertab'
 Bundle 'msanders/snipmate.vim'
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-airline/vim-airline'
 Bundle 'scrooloose/nerdtree'
-" 希望换成更好的注释工具
+
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
@@ -38,12 +39,12 @@ Bundle 'godlygeek/tabular'
 Bundle 'majutsushi/tagbar'
 Bundle 'greyblake/vim-preview'
 Bundle 'jpo/vim-railscasts-theme'
-" F11全屏, F6 Open
+" F11quanping, F6 Open
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-shell'
 " make -f make_gcc.mak
 Bundle 'Shougo/vimproc'
-" 需要先安装vimproc
+" first should install vimproc
 Bundle 'Shougo/vimshell'
 " Bundle 'vimim/vimim'
 
@@ -53,7 +54,7 @@ Bundle 'FuzzyFinder'
 Bundle 'taglist.vim'
 Bundle 'Specky'
 Bundle 'matchit.zip'
-" map了<lead>r，与rspec冲突
+" map了<lead>r，cofflict with rspec
 Bundle 'Mark--Karkat'
 Bundle 'bufexplorer.zip'
 Bundle 'grep.vim'
@@ -93,10 +94,10 @@ set laststatus=2
 set wildmenu " show list instead of just completing
 set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
 
-set encoding=utf-8
-" set encoding=gbk
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 " 如果你要打开的文件编码不在此列，那就添加进去
-set termencoding=utf-8
+" set encoding=utf-8
+set encoding=gbk
+" set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 "add you file type if need
+" set termencoding=gbk
 
 " Load matchit (% to bounce from do to end, etc.)
 runtime! macros/matchit.vim
@@ -109,7 +110,6 @@ runtime! macros/matchit.vim
 ""augroup END
 ""noremap <silent> <F11> :cal VimCommanderToggle()<CR>
 
-" specky是一个为rspec测试提供方便的工具
 let g:speckyBannerKey = "<leader>rb"
 let g:speckyQuoteSwitcherKey = "<leader>r'"
 let g:speckyRunRdocKey = "<leader>rd"
@@ -122,12 +122,10 @@ let g:speckyWindowType = 1
 
 
 let g:vim_markdown_folding_disabled=1
-"" viki 用wiki的格式来记录信息的工具
 "let g:vikiNameSuffix=".viki"
 "let g:vikiUseParentSuffix = 1
 "autocmd! BufRead,BufNewFile *.viki set filetype=viki
 
-"初始窗口最大化
 "au GUIEnter * simalt ~x
 
 " An example for a vimrc file.
@@ -177,10 +175,10 @@ nnoremap K k
 
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
+"if has('mouse')
+"  set mouse=a
+"endif
+set mouse-=a
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -229,13 +227,13 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-" 复制粘贴
+" copy post
 " noremap <silent> <leader>p "+p
 " noremap <silent> <leader>y "+y
 vmap <leader>y y:call system("pbcopy", getreg("\""))<CR>
 vmap <leader>p  :call setreg("\"", system("pbpaste"))<CR>p
 
-" 快速查找
+" find fast
 noremap <silent> <leader>ff :FufFile!<CR>
 noremap <silent> <leader>fa :FufCoverageFile!<CR>
 noremap <silent> <leader>fb :FufBuffer!<CR>
@@ -244,13 +242,13 @@ noremap <silent> <leader>fm :FufMruFile!<CR>
 noremap <silent> <leader>fw :FufFileWithCurrentBufferDir!<CR>
 noremap <silent> <leader>fc :FufMruCmd!<CR>
 
-" 窗口切换
+" window tab
 noremap <silent> H <C-W><C-H>
 noremap <silent> L <C-W><C-L>
-" 文件夹树和tag列表以及画图工具
+" dir tree and tag list
 noremap <silent> <leader>tt :NERDTreeToggle<CR>
 noremap <silent> <F2> :Tlist<CR>
-" Commmand-T: 查找文件
+" Commmand-T: findFile
 noremap <silent> <F8> :CommandT<CR>
 noremap <silent> <leader>ts :call ToggleSketch()<CR>
 " tabnew
@@ -258,7 +256,7 @@ nnoremap <silent> tt :tabnew<CR>
 nnoremap <silent> <C-A> <Esc>ggVG
 nnoremap <silent> = <C-I>
 nnoremap <silent> - <C-O>
-" 退出和保存
+" quit and save
 nnoremap <C-S> :w<CR>
 nnoremap <C-Q> :q<CR>
 
@@ -292,11 +290,9 @@ nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " }
 
-"" 使用空格翻页
+"" use space to page down
 "" nnoremap <silent> <space> <C-F>
 "
-"" 当处于wrap模式时，让通常的操作键作用于视觉上的行
-"" 只有在set wrap? == 'nowrap' 的情况下才适用
 ""nnoremap <silent> j gj
 ""nnoremap <silent> k gk
 ""nnoremap <silent> 0 g0
@@ -318,7 +314,6 @@ abbrev so source ~/.vimrc<CR>
 "noreabbr Q q
 "noreabbr W w
 "iabbr -p puts "--------------------------------------"
-" 自己添加的运行ruby指令
 let g:runRubyKey = "<leader>rr"
 let g:toggleRubyCommentKey = "<leader>rc"
 
@@ -329,25 +324,19 @@ au BufRead,BufNewFile *.txt setlocal ft=ruby
 "
 "" vimim begin
 ""
-"" 只有在输入完按空格才显示输入法
 "" let g:vimim_static_input_style = 2
 "" let g:vimim_static_input_style = 0
 "
-"" 为-1时不调用云输入法
 "" let g:vimim_cloud_sogou = -1
-"" 5个字符以上查找搜狗
 "let g:vimim_cloud_sogou = 5
 "
-"" 每打多少个词后存盘
 "let g:vimim_chinese_frequency = 20
 "
 "" vimim end
-"256配色"
 set t_Co=256
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 
-"" 修改自动补全配色
 "highlight Pmenu    guibg=darkgrey  guifg=black
 highlight Pmenu ctermbg=238 gui=bold
 highlight PmenuSel guibg=lightgrey guifg=black
@@ -358,8 +347,55 @@ set tags+=./tags,./TAGS,tags;TAGS;$HOME
 "set autochdir
 "colorscheme railscasts
 
-" 解决代码粘贴到vim中格式错乱的问题，参考：https://linux.cn/tech/
 set clipboard=unnamed
 
 map <c-u> :Ag -i
 set runtimepath^=~/.vim/bundle/ag
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+if has("cscope")
+  set csprg=/usr/bin/cscope
+  set csto=1
+  set cst
+  set nocsverb
+  set cspc=3
+  "add any database in current dir
+  if filereadable("cscope.out")
+    cs add cscope.out
+    "else search cscope.out elsewhere
+  else
+    let cscope_file=findfile("cscope.out", ".;")
+    if !empty(cscope_file)&&filereadable(cscope_file)
+      exe "cs add" cscope_file
+    endif
+  endif
+  set csverb
+endif
+
+"if has("cscope")
+"  set csprg=/usr/bin/cscope              "指定用来执行 cscope 的命令
+"  set csto=1                             "先搜索tags标签文件，再搜索cscope数据库
+"  set cst                                "使用|:cstag|(:cs find g)，而不是缺省的:tag
+"  set nocsverb                           "不显示添加数据库是否成功
+"  " add any database in current directory
+"  if filereadable("cscope.out")
+"    cs add cscope.out         "添加cscope数据库
+"  else  
+"    let cscope_file=findfile("cscope.out", ".;")  
+"    let cscope_pre=matchstr(cscope_file, ".*/")  
+"    if !empty(cscope_file) && filereadable(cscope_file)  
+"      exe "cs add" cscope_file cscope_pre  
+"    endif  
+"  endif
+"  set csverb                "显示添加成功与否
+"endif
+"
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
