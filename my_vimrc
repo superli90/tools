@@ -38,7 +38,15 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'godlygeek/tabular'
 Bundle 'majutsushi/tagbar'
 Bundle 'greyblake/vim-preview'
-Bundle 'jpo/vim-railscasts-theme'
+
+" 配色方案
+" Bundle 'jpo/vim-railscasts-theme'
+Bundle 'morhetz/gruvbox'
+colorscheme gruvbox
+
+"Bundle 'lsdr/monokai'
+" colorscheme monokai
+
 " F11quanping, F6 Open
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-shell'
@@ -86,11 +94,51 @@ set wrap
 "set autochdir
 "set cursorcolumn
 "set cursorline
+set cursorline
+hi CursorLine  cterm=NONE   ctermbg=244 ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+set background=dark
+set t_Co=256
+
 set tabstop=2 shiftwidth=2 softtabstop=2
 set list
 set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 set laststatus=2
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnametruncate = 16
+let g:airline#extensions#tabline#fnamecollapse = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+"设置切换Buffer快捷键"
+nnoremap <C-N> :bn<CR>
+nnoremap <C-P> :bp<CR>
+
+" tab or buf 1
+nnoremap <leader>1 :call te#utils#tab_buf_switch(1)<cr>
+" tab or buf 2
+nnoremap <leader>2 :call te#utils#tab_buf_switch(2)<cr>
+" tab or buf 3
+nnoremap  <leader>3 :call te#utils#tab_buf_switch(3)<cr>
+" tab or buf 4
+nnoremap  <leader>4 :call te#utils#tab_buf_switch(4)<cr>
+" tab or buf 5
+nnoremap  <leader>5 :call te#utils#tab_buf_switch(5)<cr>
+" tab or buf 6
+nnoremap  <leader>6 :call te#utils#tab_buf_switch(6)<cr>
+" tab or buf 7
+nnoremap  <leader>7 :call te#utils#tab_buf_switch(7)<cr>
+" tab or buf 8
+nnoremap  <leader>8 :call te#utils#tab_buf_switch(8)<cr>
+" tab or buf 9
+nnoremap  <leader>9 :call te#utils#tab_buf_switch(9)<cr>
+" airline end
 "set linespace=0 " No extra spaces between rows"
+" set statusline=%F%m%r%h%w%=\ [ft=%Y]\ %{\"[fenc=\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"+\":\"\").\"]\"}\ [ff=%{&ff}]\ [asc=%03.3b]\ [hex=%02.2B]\ [pos=%04l,%04v][%p%%]\ [len=%L]
 set wildmenu " show list instead of just completing
 set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
 
@@ -383,12 +431,12 @@ endif
 "  " add any database in current directory
 "  if filereadable("cscope.out")
 "    cs add cscope.out         "添加cscope数据库
-"  else  
-"    let cscope_file=findfile("cscope.out", ".;")  
-"    let cscope_pre=matchstr(cscope_file, ".*/")  
-"    if !empty(cscope_file) && filereadable(cscope_file)  
-"      exe "cs add" cscope_file cscope_pre  
-"    endif  
+"  else
+"    let cscope_file=findfile("cscope.out", ".;")
+"    let cscope_pre=matchstr(cscope_file, ".*/")
+"    if !empty(cscope_file) && filereadable(cscope_file)
+"      exe "cs add" cscope_file cscope_pre
+"    endif
 "  endif
 "  set csverb                "显示添加成功与否
 "endif
@@ -401,4 +449,3 @@ nmap <C-e> :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-f> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-i> :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-d> :cs find d <C-R>=expand("<cword>")<CR><CR>
-
