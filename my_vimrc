@@ -431,12 +431,12 @@ endif
 "  " add any database in current directory
 "  if filereadable("cscope.out")
 "    cs add cscope.out         "添加cscope数据库
-"  else
-"    let cscope_file=findfile("cscope.out", ".;")
-"    let cscope_pre=matchstr(cscope_file, ".*/")
-"    if !empty(cscope_file) && filereadable(cscope_file)
-"      exe "cs add" cscope_file cscope_pre
-"    endif
+"  else  
+"    let cscope_file=findfile("cscope.out", ".;")  
+"    let cscope_pre=matchstr(cscope_file, ".*/")  
+"    if !empty(cscope_file) && filereadable(cscope_file)  
+"      exe "cs add" cscope_file cscope_pre  
+"    endif  
 "  endif
 "  set csverb                "显示添加成功与否
 "endif
@@ -449,3 +449,4 @@ nmap <C-e> :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-f> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-i> :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-d> :cs find d <C-R>=expand("<cword>")<CR><CR>
+
